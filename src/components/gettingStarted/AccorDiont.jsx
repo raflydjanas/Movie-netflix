@@ -1,14 +1,32 @@
 import AccorDiontItems from "./AccorDiontItems";
 import { asks } from "../../Data/acordiont";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { LangguegeContext } from "../../Context/Langguege";
 
 const AccorDiont = () => {
   const [curOpen, setIsOpen] = useState(null);
+  const { lang } = useContext(LangguegeContext);
+
   return (
     <div className="flex flex-col mt-10 mb-10 gap-2">
       {asks.map((item) => (
-        <AccorDiontItems key={item.id} questiont={item.questiont} answer={item.answer} curOpen={curOpen} setIsOpen={setIsOpen} />
+        <AccorDiontItems
+          key={item.id}
+          questiont={lang === "english" ? item.questiontUS : item.questiontIND}
+          answer={lang === "english" ? item.answerUS : item.answerIND}
+          curOpen={curOpen}
+          setIsOpen={setIsOpen}
+        />
       ))}
+      <div className="mb-16">
+        <h1 className="text-white text-center mt-16 text-2xl font-bold">
+          {lang === "english" ? "Ready to watch? Enter your email to create or restart your membership." : "Siap menonton? Masukkan email untuk membuat atau memulai lagi keanggotaanmu."}
+        </h1>
+        <div className="flex justify-center">
+          <input type="text" className="bg-slate-700 p-2 rounded-lg mt-5 mr-2 w-[30rem] text-white opacity-50" />
+          <button className="bg-red-600 hover:bg-red-700 px-3 rounded-lg mt-5 text-white">{lang === "english" ? "Get Started" : "Get Mulai"}</button>
+        </div>
+      </div>
     </div>
   );
 };
