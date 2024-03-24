@@ -8,7 +8,7 @@ const AccorDiont = () => {
   const { lang } = useContext(LangguegeContext);
 
   return (
-    <div className="flex flex-col mt-10 mb-10 gap-2">
+    <div className="flex flex-col mt-10 mb-10 gap-2 ">
       {asks.map((item) => (
         <AccorDiontItems
           key={item.id}
@@ -18,13 +18,14 @@ const AccorDiont = () => {
           setIsOpen={setIsOpen}
         />
       ))}
+
       <div className="mb-16">
-        <h1 className="text-white text-center mt-16 text-2xl font-bold">
+        <h1 className="text-white text-center mt-16 mx-10 text-2xl font-bold">
           {lang === "english" ? "Ready to watch? Enter your email to create or restart your membership." : "Siap menonton? Masukkan email untuk membuat atau memulai lagi keanggotaanmu."}
         </h1>
-        <div className="flex justify-center">
-          <input type="text" className="bg-slate-700 p-2 rounded-lg mt-5 mr-2 w-[30rem] text-white opacity-50" />
-          <button className="bg-red-600 hover:bg-red-700 px-3 rounded-lg mt-5 text-white">{lang === "english" ? "Get Started" : "Get Mulai"}</button>
+        <div className="flex flex-wrap justify-center">
+          <input type="text" className="bg-slate-700 py-5 px-4 rounded-lg mt-5 mr-2 w-[20rem] lg:w-[30rem] text-white opacity-50 " placeholder="Email" />
+          <button className="bg-red-600 hover:bg-red-700 px-3 w-48 lg:w-[10rem] py-3 rounded-lg mt-5 text-white">{lang === "english" ? "Get Started" : "Get Mulai"}</button>
         </div>
       </div>
     </div>

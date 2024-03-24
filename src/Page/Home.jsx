@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getMovie } from "./Services/authservices";
+import { getMovie } from "../Services/authservices";
 
-const App = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
