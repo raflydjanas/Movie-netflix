@@ -1,8 +1,23 @@
-import { useContext } from "react";
+/* eslint-disable react/prop-types */
+import { useContext, useState } from "react";
 import { LangguegeContext } from "../../Context/Langguege";
+import { useNavigate } from "react-router-dom";
 
-function DekstopLayout({ type }) {
+function DekstopLayout({ type, getUsers }) {
+  const [inputLogin, setInputLogin] = useState();
+  const [massage, setMassage] = useState("");
   const { lang } = useContext(LangguegeContext);
+  const navigate = useNavigate();
+  const { username } = getUsers;
+
+  function handleLogin() {
+    if (username === inputLogin) {
+      navigate("/home");
+    } else {
+      setInputLogin("");
+      setMassage("wrong username try again");
+    }
+  }
   return (
     <>
       {type === "hero" && (
@@ -18,9 +33,18 @@ function DekstopLayout({ type }) {
                   </h3>
 
                   <div className="flex flex-wrap justify-center">
-                    <input type="text" placeholder="Your username" className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80" />
-                    <button className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">Get Started</button>
+                    <input
+                      type="text"
+                      placeholder="Your username"
+                      value={inputLogin}
+                      onChange={(e) => setInputLogin(e.target.value)}
+                      className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80"
+                    />
+                    <button onClick={handleLogin} className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
+                      Get Started
+                    </button>
                   </div>
+                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[30rem] text-md font-bold ">{massage}</p>}
                 </>
               ) : (
                 <>
@@ -31,9 +55,12 @@ function DekstopLayout({ type }) {
                   </h3>
 
                   <div className="flex flex-wrap justify-center">
-                    <input type="text" className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80" />
-                    <button className="bg-red-600  hover:bg-red-700 px-7 py-3 w-[10rem] rounded-md mt-5 text-white">Mulai</button>
+                    <input type="text" value={inputLogin} onChange={(e) => setInputLogin(e.target.value)} className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80" />
+                    <button onClick={handleLogin} className="bg-red-600  hover:bg-red-700 px-7 py-3 w-[10rem] rounded-md mt-5 text-white">
+                      Mulai
+                    </button>
                   </div>
+                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[30rem] text-md font-bold ">{massage}</p>}
                 </>
               )}
             </div>

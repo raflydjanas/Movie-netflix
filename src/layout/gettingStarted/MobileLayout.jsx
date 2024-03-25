@@ -1,8 +1,23 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { LangguegeContext } from "../../Context/Langguege";
+import { useNavigate } from "react-router-dom";
 
-function MobileLayout({ type }) {
+function MobileLayout({ type, getUsers }) {
   const { lang } = useContext(LangguegeContext);
+  const [inputLogin, setInputLogin] = useState("");
+  const [massage, setMassage] = useState("");
+  const Navigate = useNavigate();
+  const { username } = getUsers;
+
+  const UserLogin = () => {
+    if (username === inputLogin) {
+      Navigate("/home");
+    } else {
+      setInputLogin("");
+      setMassage("wrong username try again");
+    }
+  };
+
   return (
     <>
       {type === "hero" && (
@@ -18,9 +33,12 @@ function MobileLayout({ type }) {
                   </h3>
 
                   <div className="flex flex-wrap justify-center">
-                    <input type="text" className="bg-slate-700 py-4 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80" />
-                    <button className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">Get Started</button>
+                    <input type="text" value={inputLogin} onChange={(e) => setInputLogin(e.target.value)} className="bg-slate-700 py-4 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80" />
+                    <button onClick={UserLogin} className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
+                      Get Started
+                    </button>
                   </div>
+                  {massage && <p className="text-red-500  font-bold ">{massage}</p>}
                 </>
               ) : (
                 <>
@@ -31,9 +49,18 @@ function MobileLayout({ type }) {
                   </h3>
 
                   <div className="flex flex-wrap justify-center">
-                    <input type="text" placeholder="Your username" className="bg-slate-700 p-2 rounded-md mt-5 w-[22rem] text-white opacity-80" />
-                    <button className="bg-red-600  hover:bg-red-700 px-7 py-3 w-[10rem] rounded-md mt-5 text-white">Mulai</button>
+                    <input
+                      type="text"
+                      value={inputLogin}
+                      onChange={(e) => setInputLogin(e.target.value)}
+                      placeholder="Your username"
+                      className="bg-slate-700 p-2 rounded-md mt-5 w-[22rem] text-white opacity-80"
+                    />
+                    <button onClick={UserLogin} className="bg-red-600 hover:bg-red-700 px-7 py-3 w-[10rem] rounded-md mt-5 text-white">
+                      Mulai
+                    </button>
                   </div>
+                  {massage && <p className="text-red-500  text-md font-bold ">{massage}</p>}
                 </>
               )}
             </div>

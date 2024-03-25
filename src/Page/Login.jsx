@@ -12,7 +12,7 @@ function FormLogin() {
   return (
     <>
       <FirtsLayout>
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-slate-900 opacity-60"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-black to-slate-900 opacity-60"></div> */}
         <NavBar />
         <Content type="hero" />
       </FirtsLayout>

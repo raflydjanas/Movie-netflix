@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { LangguegeContext } from "../Context/Langguege";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const { lang, setLang } = useContext(LangguegeContext);
+  const navigate = useNavigate();
 
   return (
     <div className=" absolute flex  justify-between px-[10rem] top-0 right-0 lg:left-0">
@@ -13,7 +15,9 @@ const NavBar = () => {
           <option value="english">English</option>
           <option value="indonesia">Indonesia</option>
         </select>
-        <button className=" block h-10 mt-[3rem] bg-red-600 hover:bg-red-700 px-10 rounded-md text-white">Sign in</button>
+        <button onClick={() => navigate("/register")} className=" block h-10 mt-[3rem] bg-red-600 hover:bg-red-700 px-10 rounded-md text-white">
+          Sign in
+        </button>
       </div>
     </div>
   );

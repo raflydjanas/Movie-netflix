@@ -4,13 +4,13 @@ import MobileLayout from "../../layout/gettingStarted/MobileLayout";
 
 function Content({ type }) {
   const [isMobile, setIsMobile] = useState(false);
+  const getUsers = JSON.parse(localStorage.getItem("user") || []);
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     handleResize();
-
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -18,7 +18,7 @@ function Content({ type }) {
     };
   }, []);
 
-  return <>{isMobile ? <MobileLayout type={type} /> : <DekstopLayout type={type} />}</>;
+  return <>{isMobile ? <MobileLayout type={type} getUsers={getUsers} /> : <DekstopLayout type={type} getUsers={getUsers} />}</>;
 }
 
 export default Content;
