@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { LangguegeContext } from "../Context/Langguege";
 import AccorDiont from "../components/gettingStarted/AccorDiont";
 import Content from "../components/gettingStarted/Content";
@@ -8,12 +8,25 @@ import SecondLayout from "../layout/gettingStarted/SecondLayout";
 
 function FormLogin() {
   const { lang } = useContext(LangguegeContext);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleSize();
+    window.addEventListener("resize", handleSize);
+    return () => {
+      window.removeEventListener("resize", handleSize);
+    };
+  }, [isMobile]);
 
   return (
     <>
       <FirtsLayout>
         {/* <div className="absolute inset-0 bg-gradient-to-t from-black to-slate-900 opacity-60"></div> */}
-        <NavBar />
+        {isMobile ? <NavBar type="mobileHero" /> : <NavBar type="dekstop" />}
         <Content type="hero" />
       </FirtsLayout>
       <SecondLayout>

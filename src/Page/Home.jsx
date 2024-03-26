@@ -1,31 +1,26 @@
-import { useEffect, useState } from "react";
-import { getMovie } from "../Services/authservices";
+import { useState, useEffect } from "react";
+import Movie from "../layout/home/MovieLayout";
+import NavBar from "../layout/NavBar";
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    getMovie().then((data) => {
-      setMovies(data);
-      console.log(data);
-    });
-  }, []);
+    const handleSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleSize();
+    window.addEventListener("resize", handleSize);
+    return () => {
+      window.removeEventListener("resize", handleSize);
+    };
+  }, [isMobile]);
 
   return (
-    <div className="mx-auto">
-      <h1 className="text-3xl font-bold underline">Movie</h1>
-      <ul className="flex flex-wrap">
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <div>
-              <p>{movie.name}</p>
-              <p>{movie.genres.slice(1, 3).join(", ")}</p>
-              <p>{movie.language}</p>
-            </div>
-            <img src={movie.image.medium} alt={movie.name} />
-          </li>
-        ))}
-      </ul>
+    <div className="bg-slate-900 h-auto w-full">
+      {isMobile ? <NavBar type="mobile" /> : <NavBar type="dekstop" />}
+      <Movie />
     </div>
   );
 };

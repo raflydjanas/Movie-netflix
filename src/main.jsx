@@ -8,6 +8,7 @@ import Home from "./Page/Home.jsx";
 import LangguegeContextProvider from "./Context/Langguege.jsx";
 
 import "./index.css";
+import MovieDetails from "./Page/MovieDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+  },
+  {
+    path: "/details/:id",
+    element: <MovieDetails />,
   },
 ]);
 
