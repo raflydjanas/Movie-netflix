@@ -9,7 +9,7 @@ const NavBar = ({ type }) => {
   return (
     <>
       {type === "dekstop" && (
-        <div className=" absolute flex  justify-between px-[10rem] top-0 right-0 lg:left-0">
+        <div className="bg-black absolute flex  justify-between px-[10rem] top-0 right-0 lg:left-0">
           <div>
             <img src="../../public/image/BrandAssets_Logos_01-Wordmark-removebg-preview.png" className="w-[15rem] " alt="" />
           </div>
@@ -22,7 +22,7 @@ const NavBar = ({ type }) => {
               <option value="indonesia">Indonesia</option>
             </select>
             <button onClick={() => navigate("/register")} className=" block h-10 mt-[3rem] bg-red-600 hover:bg-red-700 px-10 rounded-md text-white">
-              Sign in
+              {lang === "english" ? "Register" : "Daftar"}
             </button>
           </div>
         </div>
@@ -38,9 +38,6 @@ const NavBar = ({ type }) => {
               <option value="english">English</option>
               <option value="indonesia">Indonesia</option>
             </select>
-            <button onClick={() => navigate("/register")} className=" block h-10  bg-red-600 hover:bg-red-700 px-3 rounded-md text-white">
-              Sign in
-            </button>
           </div>
         </div>
       )}
@@ -56,7 +53,7 @@ const NavBar = ({ type }) => {
               <option value="indonesia">Indonesia</option>
             </select>
             <button onClick={() => navigate("/register")} className=" block h-10  bg-red-600 hover:bg-red-700 px-3 rounded-md text-white">
-              Sign in
+              {lang === "english" ? "Register" : "Daftar"}
             </button>
           </div>
         </div>
