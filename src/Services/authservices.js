@@ -19,3 +19,13 @@ export const getMovieHero = async () => {
     return [];
   }
 };
+
+export const getPopularMovie = async () => {
+  try {
+    const response = await axios.get("https://api.tvmaze.com/search/shows?q=popular");
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    return [];
+  }
+};

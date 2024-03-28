@@ -12,13 +12,13 @@ import SwiperSlides from "../../layout/home/SwiperSlides";
 
 function Swipper() {
   const [heroMovie, setHeroMovie] = useState([]);
-  const [autoplay, setAutoplay] = useState(true);
+  const autoplay = true;
   const swiperRef = useRef(null);
 
   useEffect(() => {
     getMovieHero().then((data) => {
       setHeroMovie(data);
-      //   console.log(data);
+      // console.log(data);
     });
   }, []);
 
@@ -27,11 +27,9 @@ function Swipper() {
     const swiperContainer = swiperInstance.el;
     const mouseEnter = () => {
       swiperInstance.autoplay.stop();
-      setAutoplay(false);
     };
     const mouseLeave = () => {
       swiperInstance.autoplay.start();
-      setAutoplay(true);
     };
 
     swiperContainer.addEventListener("mouseenter", mouseEnter);

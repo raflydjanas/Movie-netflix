@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import Movie from "../layout/home/MovieLayout";
+import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
 import NavBar from "../layout/NavBar";
 import Hero from "../layout/home/Hero";
+import AllMovie from "../components/home/AllMovie";
+import PopularMovie from "../components/home/PopularMovie";
 
 const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
-  // const [isAll, setAll] = useState("all");
 
   useEffect(() => {
     const handleSize = () => {
@@ -22,14 +23,27 @@ const Home = () => {
   return (
     <>
       <div className="bg-black h-auto w-full">
-        {isMobile ? <NavBar type="mobile" /> : <NavBar type="dekstop" />}
+        {isMobile ? <NavBar type="mobile" /> : <NavBar type="dekstopHome" />}
         <Hero />
-        <div className="flex gap-6">
-          <button className="bg-red-600 mt-10 active:bg-red-700 hover:bg-red-700 px-10 rounded-md text-white">All</button>
-          <button className="bg-red-600 mt-10 hover:bg-red-700 px-10 rounded-md text-white">PoPuler</button>
-          <button className="bg-red-600 mt-10 hover:bg-red-700 px-10 rounded-md text-white">Trending</button>
-        </div>
-        <Movie />
+        <Tabs position="relative" variant="unstyled" colorScheme="blue">
+          <TabList className="gap-5 mt-10 ml-8 lg:ml-12">
+            <Tab className="text-red-600 lg:text-2xl hover:text-red-800">All Movie</Tab>
+            <Tab className="text-red-600 lg:text-2xl hover:text-red-800">Popular</Tab>
+            <Tab className="text-red-600 lg:text-2xl hover:text-red-800">Marvel</Tab>
+          </TabList>
+          <TabIndicator mt="1.5px" height="5px" bg="blue.500" borderRadius="1px" />
+          <TabPanels>
+            <TabPanel>
+              <AllMovie />
+            </TabPanel>
+            <TabPanel>
+              <PopularMovie />
+            </TabPanel>
+            <TabPanel>
+              <p className="text-white">Marvel</p>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </div>
     </>
   );
