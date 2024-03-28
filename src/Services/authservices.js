@@ -3,7 +3,7 @@ import axios from "axios";
 export const getMovie = async () => {
   try {
     const response = await axios.get(" https://api.tvmaze.com/show");
-    const data = await response.data.slice(0, 24);
+    const data = await response.data.slice(0, 54);
     return data;
   } catch (error) {
     return [];
@@ -22,8 +22,8 @@ export const getMovieHero = async () => {
 
 export const getPopularMovie = async () => {
   try {
-    const response = await axios.get("https://api.tvmaze.com/search/shows?q=popular");
-    const data = await response.data;
+    const response = await axios.get("https://api.tvmaze.com/shows");
+    const data = await response.data.slice(100, 124);
     return data;
   } catch (error) {
     return [];
