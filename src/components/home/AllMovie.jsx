@@ -2,9 +2,11 @@ import { getMovie } from "../../Services/authservices";
 import { useState, useEffect } from "react";
 import AllMovieList from "./MovieList";
 import MovieLayout from "../../layout/home/MovieLayout";
+import CartSkeleton from "../Fragments/CartSkeleton";
 
 function AllMovie() {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getMovie().then((data) => {
@@ -12,11 +14,17 @@ function AllMovie() {
     });
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 750);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <MovieLayout>
-      {movies.map((movie) => (
-        <AllMovieList key={movie.id} movie={movie} id={movie.id} />
-      ))}
+      {isLoading && <CartSkeleton cards={24} />}
+      {!isLoading && movies.map((movie) => <AllMovieList key={movie.id} movie={movie} id={movie.id} />)}
     </MovieLayout>
   );
 }
