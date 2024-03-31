@@ -2,20 +2,17 @@ import { useContext, useState } from "react";
 import { LangguegeContext } from "../../Context/Langguege";
 import { useNavigate } from "react-router-dom";
 
-function MobileLayout({ type, getUsers }) {
+function MobileLayout({ type, usersLogin }) {
   const { lang } = useContext(LangguegeContext);
   const [inputLogin, setInputLogin] = useState("");
   const [massage, setMassage] = useState("");
-  const Navigate = useNavigate();
-  const { username } = getUsers;
+  const navigate = useNavigate();
 
-  const UserLogin = () => {
-    if (username === inputLogin) {
-      Navigate("/home");
-    } else {
-      setInputLogin("");
-      setMassage("wrong username try again");
-    }
+  const handleLogin = () => {
+    const exitingUsers = usersLogin.some((user) => user.username === inputLogin);
+    if (exitingUsers) navigate("/home");
+
+    setMassage(`${lang === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
   };
 
   return (
@@ -33,8 +30,13 @@ function MobileLayout({ type, getUsers }) {
                   </h3>
 
                   <div className="flex flex-wrap justify-center">
-                    <input type="text" value={inputLogin} onChange={(e) => setInputLogin(e.target.value)} className="bg-slate-700 py-4 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80" />
-                    <button onClick={UserLogin} className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
+                    <input
+                      type="text"
+                      value={inputLogin}
+                      onChange={(e) => setInputLogin(e.target.value)}
+                      className="bg-slate-700 py-4 rounded-md px-3 mt-5 mr-2 w-[22rem] text-white text-xl opacity-80"
+                    />
+                    <button onClick={handleLogin} className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
                       Get Started
                     </button>
                   </div>
@@ -54,9 +56,9 @@ function MobileLayout({ type, getUsers }) {
                       value={inputLogin}
                       onChange={(e) => setInputLogin(e.target.value)}
                       placeholder="Your username"
-                      className="bg-slate-700 p-2 rounded-md mt-5 w-[22rem] text-white opacity-80"
+                      className="bg-slate-700 py-4 rounded-md px-3 mt-5 mr-2 w-[22rem] text-xl text-white opacity-80"
                     />
-                    <button onClick={UserLogin} className="bg-red-600 hover:bg-red-700 px-7 py-3 w-[10rem] rounded-md mt-5 text-white">
+                    <button onClick={handleLogin} className="bg-red-600 hover:bg-red-700 px-7 py-3 w-[10rem] rounded-md mt-5 text-white">
                       Mulai
                     </button>
                   </div>
@@ -68,7 +70,7 @@ function MobileLayout({ type, getUsers }) {
         </>
       )}
       {type === "enjoy your tv" && (
-        <div className="flex flex-wrap justify-center items-center">
+        <div className="flex flex-wrap justify-center items-center bg-black">
           {lang === "english" ? (
             <>
               <div className="text-center">
@@ -93,14 +95,14 @@ function MobileLayout({ type, getUsers }) {
         </div>
       )}
       {type === "download your shows" && (
-        <div className="flex flex-wrap items-center justify-center">
+        <div className="flex flex-wrap items-center justify-center bg-black">
           {lang === "english" ? (
             <>
               <div className="ml-6 text-center">
                 <h1 className="text-white text-4xl font-bold mb-3 font-sans max-w-[40rem]">Download your shows to watch offline</h1>
                 <p className="text-white max-w-[30rem] text-lg ">Save your favorites easily and always have something to watch.</p>
               </div>
-              <div className="">
+              <div className="bg-red-600">
                 <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" className="w-[30rem]" alt="" />
               </div>
             </>
@@ -118,7 +120,7 @@ function MobileLayout({ type, getUsers }) {
         </div>
       )}
       {type === "watch everywhere" && (
-        <div className="flex flex-wrap justify-center items-center">
+        <div className="flex flex-wrap justify-center items-center bg-black">
           {lang === "english" ? (
             <>
               <div className="text-center">
@@ -143,14 +145,14 @@ function MobileLayout({ type, getUsers }) {
         </div>
       )}
       {type === "for kids" && (
-        <div className="flex flex-wrap items-center justify-center">
+        <div className="flex flex-wrap items-center justify-center bg-black">
           {lang === "english" ? (
             <>
               <div className="text-center">
                 <h1 className="text-white text-4xl font-bold mb-3 font-sans max-w-[40rem]">Create profiles for kids</h1>
                 <p className="text-white max-w-[30rem] text-lg ">Send kids on adventures with their favorite characters in a space made just for them—free with your membership.</p>
               </div>
-              <div className="flex justify-center items-center mt-10">
+              <div className="flex justify-center items-center">
                 <img
                   src="https://occ-0-6714-58.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABejKYujIIDQciqmGJJ8BtXkYKKTi5jiqexltvN1YmvXYIfX8B9CYwooUSIzOKneblRFthZAFsYLMgKMyNfeHwk16DmEkpIIcb6A3.png?r=f55"
                   className="w-[30rem]"
@@ -177,7 +179,7 @@ function MobileLayout({ type, getUsers }) {
           )}
         </div>
       )}
-      <div className="h-1 mt-1 bg-[#232323] "></div>
+      <div className="h-1 pt-2 bg-[#232323] "></div>
     </>
   );
 }

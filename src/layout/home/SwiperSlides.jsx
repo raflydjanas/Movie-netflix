@@ -5,7 +5,7 @@ function SwiperSlides({ movie }) {
   }
 
   return (
-    <div className="relative w-full h-[15rem] lg:h-[40rem]  2xl:h-[50rem] mx-auto lg:mx-0 2xl:mx-0 mt-3 lg:mt-0 2xl:mt-0 rounded-sm overflow-hidden">
+    <div className="relative w-full h-[15rem] md:h-[20rem] lg:h-[34rem]  2xl:h-[50rem] mx-auto lg:mx-0 2xl:mx-0 mt-3 lg:mt-0 2xl:mt-0 rounded-sm overflow-hidden">
       <img src={movie.image.original} alt={movie.name} className="w-full rounded-sm object-cover " />
       <div className="absolute top-0 left-0 w-full h-full  bg-black bg-opacity-50 opacity-100 transition duration-300 ease-in-out text-white flex flex-col items-start justify-center p-3">
         <div className=" flex-col hidden lg:block 2xl-block xl:block ml-1 lg:ml-[3rem] justify-center">

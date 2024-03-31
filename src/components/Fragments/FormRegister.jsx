@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function FormRegister() {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMesage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function FormRegister() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const user = {
+    const newUser = {
       id: Date.now(),
       username,
     };
@@ -20,7 +20,11 @@ function FormRegister() {
     if (!username && !email && !password) {
       setErrorMessage("check your inpur there's still something missing");
     } else {
-      localStorage.setItem("user", JSON.stringify(user));
+      const usersJson = localStorage.getItem("users");
+      const users = usersJson ? JSON.parse(usersJson) : [];
+
+      const updateUsers = [...users, newUser];
+      localStorage.setItem("users", JSON.stringify(updateUsers));
 
       navigate("/");
     }

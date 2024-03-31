@@ -10,6 +10,16 @@ export const getMovie = async () => {
   }
 };
 
+export const getMovieDetails = async (id) => {
+  try {
+    const response = await axios.get(`https://api.tvmaze.com/shows/${id}`);
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    return [];
+  }
+};
+
 export const getMovieHero = async () => {
   try {
     const response = await axios.get(" https://api.tvmaze.com/show");

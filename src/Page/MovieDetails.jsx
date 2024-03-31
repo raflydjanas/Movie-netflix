@@ -2,7 +2,7 @@ import MovieDetailsLayout from "../layout/MovieDetailsLayout";
 
 function MovieDetails() {
   return (
-    <div>
+    <div className="bg-black h-screen relative">
       <MovieDetailsLayout />
     </div>
   );

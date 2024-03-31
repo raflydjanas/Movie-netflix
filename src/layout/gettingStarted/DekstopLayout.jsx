@@ -3,21 +3,23 @@ import { useContext, useState } from "react";
 import { LangguegeContext } from "../../Context/Langguege";
 import { useNavigate } from "react-router-dom";
 
-function DekstopLayout({ type, getUsers }) {
+function DekstopLayout({ type, usersLogin }) {
   const [inputLogin, setInputLogin] = useState();
   const [massage, setMassage] = useState("");
   const { lang } = useContext(LangguegeContext);
   const navigate = useNavigate();
-  const { username } = getUsers;
 
   function handleLogin() {
-    if (username === inputLogin) {
+    const existingUser = usersLogin.some((user) => user.username === inputLogin);
+
+    if (existingUser) {
       navigate("/home");
     } else {
       setInputLogin("");
-      setMassage("wrong username try again");
+      setMassage(`${lang === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
     }
   }
+
   return (
     <>
       {type === "hero" && (
@@ -40,11 +42,11 @@ function DekstopLayout({ type, getUsers }) {
                       onChange={(e) => setInputLogin(e.target.value)}
                       className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80"
                     />
-                    <button onClick={handleLogin} className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
+                    <button onClick={handleLogin} type="submit" className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
                       Get Started
                     </button>
                   </div>
-                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[30rem] text-md font-bold ">{massage}</p>}
+                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[35rem] text-md font-bold ">{massage}</p>}
                 </>
               ) : (
                 <>
@@ -60,7 +62,7 @@ function DekstopLayout({ type, getUsers }) {
                       Mulai
                     </button>
                   </div>
-                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[30rem] text-md font-bold ">{massage}</p>}
+                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[33rem] text-md font-bold ">{massage}</p>}
                 </>
               )}
             </div>
@@ -68,7 +70,7 @@ function DekstopLayout({ type, getUsers }) {
         </>
       )}
       {type === "enjoy your tv" && (
-        <div className="flex flex-wrap justify-center items-center">
+        <div className="flex flex-wrap justify-center items-center ">
           {lang === "english" ? (
             <>
               <div className="">

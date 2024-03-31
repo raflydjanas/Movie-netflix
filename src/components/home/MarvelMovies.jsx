@@ -14,7 +14,7 @@ function MarvelMovies() {
   return (
     <MovieLayout>
       {marvel.map((movie) => (
-        <MarvelList key={movie.imdbID} movie={movie} />
+        <MarvelList key={movie.imdbID} movie={movie} id={movie.imdbID} />
       ))}
     </MovieLayout>
   );
