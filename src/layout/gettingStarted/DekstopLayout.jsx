@@ -9,17 +9,27 @@ function DekstopLayout({ type, usersLogin }) {
   const { lang } = useContext(LangguegeContext);
   const navigate = useNavigate();
 
-  function handleLogin() {
-    const existingUser = usersLogin.some((user) => user.username === inputLogin);
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-    if (existingUser) {
+    const exitingUsers = usersLogin.some((user) => user.username === inputLogin);
+    const newUserLogin = {
+      usersLogin: inputLogin,
+    };
+
+    if (exitingUsers) {
+      const usersJson = localStorage.getItem("userslogin");
+      const userLogin = usersJson ? JSON.parse(usersJson) : [];
+
+      const updateUserLogin = [...userLogin, newUserLogin];
+      localStorage.setItem("userslogin", JSON.stringify(updateUserLogin));
+
       navigate("/home");
     } else {
       setInputLogin("");
       setMassage(`${lang === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
     }
-  }
-
+  };
   return (
     <>
       {type === "hero" && (
@@ -35,18 +45,20 @@ function DekstopLayout({ type, usersLogin }) {
                   </h3>
 
                   <div className="flex flex-wrap justify-center">
-                    <input
-                      type="text"
-                      placeholder="Your username"
-                      value={inputLogin}
-                      onChange={(e) => setInputLogin(e.target.value)}
-                      className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80"
-                    />
-                    <button onClick={handleLogin} type="submit" className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
-                      Get Started
-                    </button>
+                    <form action="" onSubmit={handleLogin}>
+                      <input
+                        type="text"
+                        placeholder="Your username"
+                        value={inputLogin}
+                        onChange={(e) => setInputLogin(e.target.value)}
+                        className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80"
+                      />
+                      <button type="submit" className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
+                        Get Started
+                      </button>
+                    </form>
                   </div>
-                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[35rem] text-md font-bold ">{massage}</p>}
+                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[38rem] 2xl:left-[50rem]  text-md font-bold ">{massage}</p>}
                 </>
               ) : (
                 <>
@@ -57,12 +69,20 @@ function DekstopLayout({ type, usersLogin }) {
                   </h3>
 
                   <div className="flex flex-wrap justify-center">
-                    <input type="text" value={inputLogin} onChange={(e) => setInputLogin(e.target.value)} className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80" />
-                    <button onClick={handleLogin} className="bg-red-600  hover:bg-red-700 px-7 py-3 w-[10rem] rounded-md mt-5 text-white">
-                      Mulai
-                    </button>
+                    <form action="" onSubmit={handleLogin}>
+                      <input
+                        type="text"
+                        placeholder="Your username"
+                        value={inputLogin}
+                        onChange={(e) => setInputLogin(e.target.value)}
+                        className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80"
+                      />
+                      <button type="submit" className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
+                        Get Started
+                      </button>
+                    </form>
                   </div>
-                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[33rem] text-md font-bold ">{massage}</p>}
+                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[39rem] 2xl:left-[52rem] text-md font-bold ">{massage}</p>}
                 </>
               )}
             </div>

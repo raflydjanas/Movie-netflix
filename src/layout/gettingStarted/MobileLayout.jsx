@@ -8,11 +8,26 @@ function MobileLayout({ type, usersLogin }) {
   const [massage, setMassage] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    const exitingUsers = usersLogin.some((user) => user.username === inputLogin);
-    if (exitingUsers) navigate("/home");
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-    setMassage(`${lang === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
+    const exitingUsers = usersLogin.some((user) => user.username === inputLogin);
+    const newUserLogin = {
+      usersLogin: inputLogin,
+    };
+
+    if (exitingUsers) {
+      const usersJson = localStorage.getItem("userslogin");
+      const userLogin = usersJson ? JSON.parse(usersJson) : [];
+
+      const updateUserLogin = [...userLogin, newUserLogin];
+      localStorage.setItem("userslogin", JSON.stringify(updateUserLogin));
+
+      navigate("/home");
+    } else {
+      setInputLogin("");
+      setMassage(`${lang === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
+    }
   };
 
   return (
@@ -29,18 +44,19 @@ function MobileLayout({ type, usersLogin }) {
                     Ready to watch? Enter your email to create or restart your membership
                   </h3>
 
-                  <div className="flex flex-wrap justify-center">
+                  <form action="" onSubmit={handleLogin} className="flex flex-wrap justify-center">
                     <input
                       type="text"
                       value={inputLogin}
                       onChange={(e) => setInputLogin(e.target.value)}
                       className="bg-slate-700 py-4 rounded-md px-3 mt-5 mr-2 w-[22rem] text-white text-xl opacity-80"
                     />
-                    <button onClick={handleLogin} className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
+                    <button type="submit" className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
                       Get Started
                     </button>
-                  </div>
-                  {massage && <p className="text-red-500  font-bold ">{massage}</p>}
+                  </form>
+
+                  {massage && <p className="text-red-500 text-center font-bold ">{massage}</p>}
                 </>
               ) : (
                 <>
@@ -50,19 +66,18 @@ function MobileLayout({ type, usersLogin }) {
                     Siap menonton? Masukkan email untuk membuat atau memulai lagi keanggotaanmu.
                   </h3>
 
-                  <div className="flex flex-wrap justify-center">
+                  <form action="" onSubmit={handleLogin} className="flex flex-wrap justify-center">
                     <input
                       type="text"
                       value={inputLogin}
                       onChange={(e) => setInputLogin(e.target.value)}
-                      placeholder="Your username"
-                      className="bg-slate-700 py-4 rounded-md px-3 mt-5 mr-2 w-[22rem] text-xl text-white opacity-80"
+                      className="bg-slate-700 py-4 rounded-md px-3 mt-5 mr-2 w-[22rem] text-white text-xl opacity-80"
                     />
-                    <button onClick={handleLogin} className="bg-red-600 hover:bg-red-700 px-7 py-3 w-[10rem] rounded-md mt-5 text-white">
+                    <button type="submit" className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
                       Mulai
                     </button>
-                  </div>
-                  {massage && <p className="text-red-500  text-md font-bold ">{massage}</p>}
+                  </form>
+                  {massage && <p className="text-red-500  text-md font-bold text-center">{massage}</p>}
                 </>
               )}
             </div>
