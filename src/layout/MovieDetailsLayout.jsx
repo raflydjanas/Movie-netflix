@@ -7,12 +7,14 @@ import Skeleton from "react-loading-skeleton";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import CommentUsers from "../components/detailsMovies/CommentUsers";
+import PlatformFilm from "../components/detailsMovies/PlatformFilm";
 
 function MovieDetailsLayout() {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     getMovieDetails(id).then((data) => {
@@ -47,8 +49,11 @@ function MovieDetailsLayout() {
             {isLoading ? <Skeleton width={150} height={30} className="mb-3" /> : <h1 className="text-white italic text-balance text-4xl font-bold mb-2">Synopsis</h1>}
             {isLoading ? <Skeleton count={4} width={600} /> : <p className="text-white text-balance text-base font-sans">{removeHTMLTags(movieDetails.summary)}</p>}
           </div>
-          <InteractionButtom comments={comments} setComments={setComments} />
-          <CommentUsers comments={comments} setComments={setComments} />
+          <InteractionButtom comments={comments} setComments={setComments} setIsOpen={setIsOpen} />
+          <div className="w-full bg-black h-auto ">
+            <PlatformFilm />
+          </div>
+          {isOpen && <CommentUsers comments={comments} setComments={setComments} />}
           <Link to="/home">
             <button className="lg:hidden mt-4 bg-red-700 hover:bg-red-800 mb-10  py-1 px-3 ml-[9rem] rounded-md ">back to home</button>
           </Link>

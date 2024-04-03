@@ -35,11 +35,11 @@ function ButtonLike() {
   }
 
   return (
-    <div className="flex ">
+    <div className="flex justify-center items-center gap-3">
       <button className="relative text-white hover:text-slate-300 pb-3" onClick={handleLike}>
-        <AiFillLike size={30} /> {count}
+        <AiFillLike size={30} />
       </button>
-      {/* <div className="text-white text-lg font-bold  text-center absolute bottom-[36rem] left-[8.3rem] lg:bottom-[22.4rem] lg:left-[6.3rem]"></div> */}
+      <div className="text-white">{count}</div>
     </div>
   );
 }

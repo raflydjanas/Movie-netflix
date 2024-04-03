@@ -1,12 +1,12 @@
 import { FaCommentAlt } from "react-icons/fa";
 
-function Commant({ comments }) {
+function Commant({ comments, setIsOpen }) {
   return (
-    <div className="flex flex-col">
-      <button className="text-white hover:text-slate-300 pb-3">
-        <FaCommentAlt size={25} /> {comments.length}
+    <div className="flex items-center justify-center gap-3">
+      <button className="text-white hover:text-slate-300 pb-3" onClick={() => setIsOpen((prev) => !prev)}>
+        <FaCommentAlt size={25} />
       </button>
-      {/* <div className="text-white text-lg font-bold  text-center absolute bottom-[36.6rem] left-[12rem] lg:bottom-[22.4rem] lg:left-[10.3rem]"></div> */}
+      <div className="text-white">{comments.length}</div>
     </div>
   );
 }

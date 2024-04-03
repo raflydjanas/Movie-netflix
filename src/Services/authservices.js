@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getMovie = async () => {
+export const getMovie = async (limit, offset) => {
   try {
     const response = await axios.get(" https://api.tvmaze.com/show");
-    const data = await response.data.slice(0, 54);
+    const data = await response.data.slice(offset, offset + limit);
     return data;
   } catch (error) {
     return [];

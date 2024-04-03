@@ -3,7 +3,7 @@ import MovieDetailsLayout from "../layout/MovieDetailsLayout";
 function MovieDetails() {
   return (
     <>
-      <div className="bg-black h-aouto w-full relative">
+      <div className="bg-black h-full w-full relative">
         <MovieDetailsLayout />
       </div>
     </>
