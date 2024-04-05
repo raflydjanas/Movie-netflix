@@ -8,6 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import CommentUsers from "../components/detailsMovies/CommentUsers";
 import PlatformFilm from "../components/detailsMovies/PlatformFilm";
+import LinkToWatchVideo from "../components/detailsMovies/LinkToWatchVideo";
 
 function MovieDetailsLayout() {
   const { id } = useParams();
@@ -40,19 +41,27 @@ function MovieDetailsLayout() {
           <div
             className="h-[20rem] lg:h-[26rem] 2xl:h-[30rem] w-full"
             style={{ backgroundImage: `url(${movieDetails.image.original})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}
-          ></div>
+          >
+            <div className="absolute  h-[20rem]  lg:h-[26rem] 2xl:h-[30rem] w-full opacity-80 bg-black bg-opacity-50  transition duration-300 ease-in-out text-white flex flex-col items-start justify-center p-3"></div>
+          </div>
+
           <DetailsInformation movieDetails={movieDetails} isLoading={isLoading} />
+
           <div className="absolute top-[12rem] left-3 h-[15rem] w-[10rem] lg:top-[17rem] lg:left-10 lg:w-[16rem]  lg:h-[23rem]">
             {isLoading ? <Skeleton className="h-[15rem] lg:h-[25rem] rounded-xl" /> : <img src={movieDetails.image.original} className="w-full h-full rounded-lg" alt="" />}
           </div>
+
+          <LinkToWatchVideo id={id} />
+
           <div className="mt-[14rem] p-2 lg:ml-[19rem] lg:mt-3">
             {isLoading ? <Skeleton width={150} height={30} className="mb-3" /> : <h1 className="text-white italic text-balance text-4xl font-bold mb-2">Synopsis</h1>}
             {isLoading ? <Skeleton count={4} width={600} /> : <p className="text-white text-balance text-base font-sans">{removeHTMLTags(movieDetails.summary)}</p>}
           </div>
+
           <InteractionButtom comments={comments} setComments={setComments} setIsOpen={setIsOpen} />
-          <div className="w-full bg-black h-auto ">
-            <PlatformFilm />
-          </div>
+
+          <PlatformFilm />
+
           {isOpen && <CommentUsers comments={comments} setComments={setComments} />}
           <Link to="/home">
             <button className="lg:hidden mt-4 bg-red-700 hover:bg-red-800 mb-10  py-1 px-3 ml-[9rem] rounded-md ">back to home</button>
