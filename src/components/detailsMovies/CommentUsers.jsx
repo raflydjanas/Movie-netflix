@@ -43,7 +43,7 @@ function CommentUsers({ comments, setComments }) {
           <div key={index} className="w-full ml-0 px-4 flex flex-col gap-5 lg:ml-10 lg:w-[50rem] border-b pb-5 border-slate-700">
             <div className="flex items-center gap-3">
               <GoPerson size={40} className="bg-slate-500 rounded-full" />
-              <p className="text-slate-100">{userNames}</p>
+              <p className="text-slate-100">{userNames[index]}</p>
             </div>
             <p className="text-slate-100">{comment.comment}</p>
           </div>
