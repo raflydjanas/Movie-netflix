@@ -14,7 +14,7 @@ function Share() {
       </button>
 
       {isOpen && (
-        <div className="absolute left-[20rem] flex flex-col lg:flex-row justify-center lg:ml-10 items-center gap-3 w-[5rem] h-[5rem]">
+        <div className=" absolute left-[20rem] flex flex-col lg:flex-row justify-center lg:ml-10 items-center gap-3 w-[5rem] h-[5rem]">
           <FacebookShareButton url={`http://localhost:5173/details/${id}`}>
             <FacebookIcon size={35} round />
           </FacebookShareButton>

@@ -39,9 +39,11 @@ function AllMovie() {
         {!isLoading && movies.map((movie) => <AllMovieList key={movie.id} movie={movie} id={movie.id} />)}
       </MovieLayout>
       {movies.length > 0 && (
-        <button onClick={handleLoadMore} className="w-full lg:w-[10rem] lg:ml-[45rem]  bg-red-700 hover:bg-red-800 mb-10 mt-[2rem] py-1 px-3  rounded-md">
-          More
-        </button>
+        <div className="flex items-center justify-center">
+          <button onClick={handleLoadMore} className="w-full lg:w-[10rem]  bg-red-700 hover:bg-red-800 mb-10 mt-[2rem] py-1 px-3  rounded-md">
+            More
+          </button>
+        </div>
       )}
     </>
   );
