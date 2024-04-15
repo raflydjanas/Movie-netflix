@@ -58,7 +58,7 @@ function DekstopLayout({ type, usersLogin }) {
                       </button>
                     </form>
                   </div>
-                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[38rem] 2xl:left-[50rem]  text-md font-bold ">{massage}</p>}
+                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[38rem] 2xl:left-[35rem]  text-md font-bold ">{massage}</p>}
                 </>
               ) : (
                 <>
@@ -82,7 +82,7 @@ function DekstopLayout({ type, usersLogin }) {
                       </button>
                     </form>
                   </div>
-                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[39rem] 2xl:left-[52rem] text-md font-bold ">{massage}</p>}
+                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[39rem] 2xl:left-[52rem] xl:left-[10rem] text-md font-bold ">{massage}</p>}
                 </>
               )}
             </div>
