@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMovieDetails } from "../Services/authservices";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DetailsInformation from "../components/detailsMovies/DetailsInformation";
 import InteractionButtom from "../components/detailsMovies/InteractionButtom";
 import Skeleton from "react-loading-skeleton";
@@ -9,6 +9,8 @@ import "react-loading-skeleton/dist/skeleton.css";
 import CommentUsers from "../components/detailsMovies/CommentUsers";
 import PlatformFilm from "../components/detailsMovies/PlatformFilm";
 import LinkToWatchVideo from "../components/detailsMovies/LinkToWatchVideo";
+import FeatureButton from "../components/home/FeatureButton";
+import { MdOutlineMoreTime } from "react-icons/md";
 
 function MovieDetailsLayout() {
   const { id } = useParams();
@@ -50,6 +52,9 @@ function MovieDetailsLayout() {
           <div className="absolute top-[12rem] left-3 h-[15rem] w-[10rem] lg:top-[17rem] lg:left-10 lg:w-[16rem]  lg:h-[23rem]">
             {isLoading ? <Skeleton className="h-[15rem] lg:h-[25rem] rounded-xl" /> : <img src={movieDetails.image.original} className="w-full h-full rounded-lg" alt="" />}
           </div>
+          <div className="xl:hidden 2xl:hidden absolute top-[10.4rem] z-55 right-[12rem]">
+            <MdOutlineMoreTime size={56} />
+          </div>
 
           <LinkToWatchVideo id={id} />
 
@@ -63,9 +68,7 @@ function MovieDetailsLayout() {
           <PlatformFilm />
 
           {isOpen && <CommentUsers comments={comments} setComments={setComments} />}
-          <Link to="/home">
-            <button className="lg:hidden mt-4 bg-red-700 hover:bg-red-800 mb-10  py-1 px-3 ml-[9rem] rounded-md ">back to home</button>
-          </Link>
+          <FeatureButton />
         </>
       )}
     </>

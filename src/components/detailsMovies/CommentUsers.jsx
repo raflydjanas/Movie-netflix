@@ -38,7 +38,7 @@ function CommentUsers({ comments, setComments }) {
           </button>
         </div>
       </form>
-      <div className="flex flex-col gap-16 ml-10">
+      <div className="flex flex-col gap-16 ml-10 mb-[4rem]">
         {comments.map((comment, index) => (
           <div key={index} className="w-full ml-0 px-4 flex flex-col gap-5 lg:ml-10 lg:w-[50rem] border-b pb-5 border-slate-700">
             <div className="flex items-center gap-3">

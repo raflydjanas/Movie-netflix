@@ -1,7 +1,7 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
 import AllMovie from "../../components/home/AllMovie";
 import PopularMovie from "../../components/home/PopularMovies";
-import MarvelMovies from "../../components/home/MarvelMovies";
+import TopPick from "../../components/home/MarvelMovies";
 import { useContext } from "react";
 import { LangguegeContext } from "../../Context/Langguege";
 
@@ -24,7 +24,7 @@ function DaftarMovies() {
             <PopularMovie />
           </TabPanel>
           <TabPanel>
-            <MarvelMovies />
+            <TopPick />
           </TabPanel>
         </TabPanels>
       </Tabs>

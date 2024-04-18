@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { getMarvelMovie } from "../../Services/marvelMovies";
 import MovieLayout from "../../layout/home/MovieLayout";
 import MarvelList from "./MarvelList";
+import FeatureButton from "./FeatureButton";
 
-function MarvelMovies() {
+function TopPick() {
   const [marvel, setMarvel] = useState([]);
   useEffect(() => {
     getMarvelMovie().then((data) => {
@@ -12,12 +13,15 @@ function MarvelMovies() {
   }, []);
 
   return (
-    <MovieLayout>
-      {marvel.map((movie) => (
-        <MarvelList key={movie.id} movie={movie} id={movie.id} />
-      ))}
-    </MovieLayout>
+    <>
+      <MovieLayout>
+        {marvel.map((movie) => (
+          <MarvelList key={movie.id} movie={movie} id={movie.id} />
+        ))}
+      </MovieLayout>
+      <FeatureButton />
+    </>
   );
 }
 
-export default MarvelMovies;
+export default TopPick;

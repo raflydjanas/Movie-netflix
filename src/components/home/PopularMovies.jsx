@@ -3,6 +3,7 @@ import MovieLayout from "../../layout/home/MovieLayout";
 import { getPopularMovie } from "../../Services/authservices";
 import PopularMovieList from "./PopularMovieList";
 import CartSkeleton from "../Fragments/CartSkeleton";
+import FeatureButton from "./FeatureButton";
 
 function PopularMovie() {
   const [popularMovieas, setPopularMovieas] = useState([]);
@@ -22,12 +23,15 @@ function PopularMovie() {
   }, []);
 
   return (
-    <MovieLayout>
-      {isLoading && <CartSkeleton cards={12} />}
-      {popularMovieas.map((movie) => (
-        <PopularMovieList key={movie.id} movie={movie} id={movie.id} />
-      ))}
-    </MovieLayout>
+    <>
+      <MovieLayout>
+        {isLoading && <CartSkeleton cards={12} />}
+        {popularMovieas.map((movie) => (
+          <PopularMovieList key={movie.id} movie={movie} id={movie.id} />
+        ))}
+      </MovieLayout>
+      <FeatureButton />
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import AllMovieList from "./MovieList";
 import MovieLayout from "../../layout/home/MovieLayout";
 import CartSkeleton from "../Fragments/CartSkeleton";
+import FeatureButton from "./FeatureButton";
 
 function AllMovie() {
   const [movies, setMovies] = useState([]);
@@ -38,10 +39,11 @@ function AllMovie() {
         {isLoading && <CartSkeleton cards={24} />}
         {!isLoading && movies.map((movie) => <AllMovieList key={movie.id} movie={movie} id={movie.id} />)}
       </MovieLayout>
+      <FeatureButton />
       {movies.length > 0 && (
         <div className="flex items-center justify-center">
-          <button onClick={handleLoadMore} className="w-full lg:w-[10rem]  bg-red-700 hover:bg-red-800 mb-10 mt-[2rem] py-1 px-3  rounded-md">
-            More
+          <button onClick={handleLoadMore} className="w-[10rem] lg:w-[15rem]  bg-red-700 hover:bg-red-800 mb-[6rem] mt-[2rem] py-2 px-3  rounded-md">
+            Show More v
           </button>
         </div>
       )}
