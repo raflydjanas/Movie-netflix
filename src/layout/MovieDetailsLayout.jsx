@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getMovieDetails } from "../Services/authservices";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setMovies } from "../redux/slice";
 import DetailsInformation from "../components/detailsMovies/DetailsInformation";
 import InteractionButtom from "../components/detailsMovies/InteractionButtom";
 import Skeleton from "react-loading-skeleton";
@@ -18,6 +20,7 @@ function MovieDetailsLayout() {
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getMovieDetails(id).then((data) => {
@@ -52,8 +55,11 @@ function MovieDetailsLayout() {
           <div className="absolute top-[12rem] left-3 h-[15rem] w-[10rem] lg:top-[17rem] lg:left-10 lg:w-[16rem]  lg:h-[23rem]">
             {isLoading ? <Skeleton className="h-[15rem] lg:h-[25rem] rounded-xl" /> : <img src={movieDetails.image.original} className="w-full h-full rounded-lg" alt="" />}
           </div>
-          <div className="xl:hidden 2xl:hidden absolute top-[10.4rem] z-55 right-[12rem]">
-            <MdOutlineMoreTime size={56} />
+
+          <div className="xl:hidden 2xl:hidden absolute top-[10.4rem] z-55 right-[12rem] text-slate-300">
+            <button onClick={() => dispatch(setMovies({ id, quantity: 1 }))}>
+              <MdOutlineMoreTime size={56} />
+            </button>
           </div>
 
           <LinkToWatchVideo id={id} />
