@@ -19,14 +19,16 @@ function FeatureButton() {
   return (
     <div className="xl:hidden 2xl:hidden fixed right-0 py-2 left-0 mx-3 mb-3 rounded-full flex items-center justify-evenly bottom-0 bg-slate-800 h-16 z-50">
       <Link to="/watchlater" className="text-white">
-        <p className="absolute ">{totalMoives}</p>
-        <MdOutlineAccessTime size={37} />
+        {movie.length > 0 && <p className="absolute bg-red-500 text-white px-1 rounded-full left-[5.1rem] bottom-9">{totalMoives}</p>}
+        <MdOutlineAccessTime size={37} className="z-[9999]" />
       </Link>
-      <span className="text-white">
-        <GoSearch size={37} />
-      </span>
-      <Link to="/home" className="absolute bottom-0  left-[42%] h-16 w-16 rounded-full bg-slate-700 z-[9999] flex items-center justify-center">
+
+      <Link to="/home" className=" h-16 w-16 rounded-full bg-slate-700 z-[9999] flex items-center justify-center">
         <FaHouse size={30} className="text-slate-300" />
+      </Link>
+
+      <Link to="/searchmovies" className="text-white">
+        <GoSearch size={37} />
       </Link>
     </div>
   );

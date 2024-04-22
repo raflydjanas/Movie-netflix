@@ -12,10 +12,10 @@ function WatchLaterPage() {
   console.log({ moviesData });
 
   useEffect(() => {
-    getMovieDetails(id).then((data) => {
+    getMovieDetails().then((data) => {
       setMoviesData(data);
     });
-  }, [movieId, id, moviesData]);
+  }, [movieId, moviesData]);
 
   return (
     <MovieLayout>
@@ -27,7 +27,7 @@ function WatchLaterPage() {
             return (
               <Link key={movieData.id} to={`/details/${id}`}>
                 <div className="relative hover:scale-110 hover:z-10 lg:hover:scale-150 transition duration-300 p-2 lg:p-1">
-                  <img src={movieData?.image?.medium} alt={movieData.name} className="w-[full] rounded-md " />
+                  <img src={movieData?.image?.medium} alt={movieData.name} className="w-[full] rounded-md" />
                   <div className="absolute top-0 left-0 w-full h-full opacity-0 bg-black bg-opacity-50 hover:opacity-100 transition duration-300 ease-in-out text-white flex flex-col items-start justify-center p-3">
                     <div className="mt-[10rem]">
                       <i className=" text-lg">{movieData.name}</i>

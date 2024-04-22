@@ -8,6 +8,7 @@ import WatchLaterPage from "./Page/WatchLater.jsx";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { Provider } from "react-redux";
 import store from "./redux/store.js";
+import SearchMoviesPage from "./Page/SearchMovies.jsx";
 
 import LangguegeContextProvider from "./Context/Langguege.jsx";
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/watchlater",
     element: <WatchLaterPage />,
+  },
+  {
+    path: "/searchmovies",
+    element: <SearchMoviesPage />,
   },
 ]);
 

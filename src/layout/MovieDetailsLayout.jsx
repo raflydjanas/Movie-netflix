@@ -6,6 +6,7 @@ import { setMovies } from "../redux/slice";
 import DetailsInformation from "../components/detailsMovies/DetailsInformation";
 import InteractionButtom from "../components/detailsMovies/InteractionButtom";
 import Skeleton from "react-loading-skeleton";
+import { useSelector } from "react-redux";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import CommentUsers from "../components/detailsMovies/CommentUsers";
@@ -21,6 +22,7 @@ function MovieDetailsLayout() {
   const [comments, setComments] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  const movie = useSelector((state) => state.movie.data);
 
   useEffect(() => {
     getMovieDetails(id).then((data) => {
@@ -35,6 +37,12 @@ function MovieDetailsLayout() {
     return () => clearTimeout(time);
   }, []);
 
+  useEffect(() => {
+    if (movie.length > 0) {
+      localStorage.setItem("movies", JSON.stringify(movie));
+    }
+  }, [movie, movieDetails]);
+
   function removeHTMLTags(str) {
     return str.replace(/<[^>]*>/g, "");
   }
@@ -45,15 +53,15 @@ function MovieDetailsLayout() {
         <>
           <div
             className="h-[20rem] lg:h-[26rem] 2xl:h-[30rem] w-full"
-            style={{ backgroundImage: `url(${movieDetails.image.original})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}
+            style={{ backgroundImage: `url(${movieDetails?.image?.original})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}
           >
             <div className="absolute  h-[20rem]  lg:h-[26rem] 2xl:h-[30rem] w-full opacity-80 bg-black bg-opacity-50  transition duration-300 ease-in-out text-white flex flex-col items-start justify-center p-3"></div>
           </div>
 
           <DetailsInformation movieDetails={movieDetails} isLoading={isLoading} />
 
-          <div className="absolute top-[12rem] left-3 h-[15rem] w-[10rem] lg:top-[17rem] lg:left-10 lg:w-[16rem]  lg:h-[23rem]">
-            {isLoading ? <Skeleton className="h-[15rem] lg:h-[25rem] rounded-xl" /> : <img src={movieDetails.image.original} className="w-full h-full rounded-lg" alt="" />}
+          <div className="absolute top-[12rem] left-3 h-[15rem] w-[10rem] xl:top-[14rem] 2xl:top-[17rem] lg:left-10 lg:w-[16rem]  lg:h-[23rem]">
+            {isLoading ? <Skeleton className="h-[15rem] lg:h-[25rem] rounded-xl" /> : <img src={movieDetails?.image?.original} className="w-full h-full rounded-lg" alt="" />}
           </div>
 
           <div className="xl:hidden 2xl:hidden absolute top-[10.4rem] z-55 right-[12rem] text-slate-300">
