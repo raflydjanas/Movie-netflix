@@ -26,16 +26,18 @@ function MovieDetailsLayout() {
 
   useEffect(() => {
     getMovieDetails(id).then((data) => {
+      setIsLoading(false);
       setMovieDetails(data);
+      setIsLoading(true);
     });
   }, [id]);
 
-  useEffect(() => {
-    const time = setTimeout(() => {
-      setIsLoading(false);
-    }, 850);
-    return () => clearTimeout(time);
-  }, []);
+  // useEffect(() => {
+  //   const time = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 850);
+  //   return () => clearTimeout(time);
+  // }, []);
 
   useEffect(() => {
     if (movie.length > 0) {
