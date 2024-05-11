@@ -48,14 +48,19 @@ const NavBar = ({ type }) => {
       )}
 
       {type === "mobile" && (
-        <div className="flex items-center justify-between mx-[1rem] my-4">
+        <div className="flex items-center justify-between mx-[1rem] mb-3">
           <div>
             <img src="../../public/image/logo.png" className="w-[3rem] " alt="" />
           </div>
           <div className="flex justify-center items-center gap-2">
-            <select name="" id="" className=" w-[8rem] h-10 text-white" onChange={(e) => setLang(e.target.value)} value={lang}>
-              <option value="english">English</option>
-              <option value="indonesia">Indonesia</option>
+            <div className="text-white">{lang === "english" ? "EN" : "ID"}</div>
+            <select name="" id="" className=" w-[8rem] h-10 bg-black text-white" onChange={(e) => setLang(e.target.value)} value={lang}>
+              <option value="english" className="text-white">
+                English
+              </option>
+              <option value="indonesia" className="text-white">
+                Indonesia
+              </option>
             </select>
           </div>
         </div>

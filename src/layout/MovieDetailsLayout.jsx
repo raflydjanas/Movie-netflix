@@ -20,15 +20,15 @@ function MovieDetailsLayout() {
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movie.data);
 
   useEffect(() => {
+    setIsLoading(true);
     getMovieDetails(id).then((data) => {
-      setIsLoading(false);
       setMovieDetails(data);
-      setIsLoading(true);
+      setIsLoading(false);
     });
   }, [id]);
 
