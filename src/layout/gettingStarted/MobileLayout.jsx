@@ -3,7 +3,7 @@ import { LangguegeContext } from "../../Context/Langguege";
 import { useNavigate } from "react-router-dom";
 
 function MobileLayout({ type, usersLogin }) {
-  const { lang } = useContext(LangguegeContext);
+  const { language } = useContext(LangguegeContext);
   const [inputLogin, setInputLogin] = useState("");
   const [massage, setMassage] = useState("");
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function MobileLayout({ type, usersLogin }) {
       navigate("/home");
     } else {
       setInputLogin("");
-      setMassage(`${lang === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
+      setMassage(`${language === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
     }
   };
 
@@ -36,7 +36,7 @@ function MobileLayout({ type, usersLogin }) {
         <>
           <div className="">
             <div className="z-10 flex flex-col justify-center items-center h-full ">
-              {lang === "english" ? (
+              {language === "english" ? (
                 <>
                   <h1 className="text-white text-4xl text-center lg:text-5xl font-bold opacity-90 font-sans mb-4">Unlimiyed movie, Tv shows, and more.</h1>
                   <h2 className="text-white text-base text-center font-bold opacity-90 font-sans mb-5 lg:text-3xl">Watch anywhere. Cancel anytime</h2>
@@ -48,6 +48,7 @@ function MobileLayout({ type, usersLogin }) {
                     <input
                       type="text"
                       value={inputLogin}
+                      placeholder="Enter Your username"
                       onChange={(e) => setInputLogin(e.target.value)}
                       className="bg-slate-700 py-4 rounded-md px-3 mt-5 mr-2 w-[22rem] text-white text-xl opacity-80"
                     />
@@ -86,7 +87,7 @@ function MobileLayout({ type, usersLogin }) {
       )}
       {type === "enjoy your tv" && (
         <div className="flex flex-wrap justify-center items-center bg-black">
-          {lang === "english" ? (
+          {language === "english" ? (
             <>
               <div className="text-center">
                 <h1 className="text-white text-4xl lg:text-5xl font-bold mb-3 font-sans">Enjoy on your tv</h1>
@@ -111,7 +112,7 @@ function MobileLayout({ type, usersLogin }) {
       )}
       {type === "download your shows" && (
         <div className="flex flex-wrap items-center justify-center bg-black">
-          {lang === "english" ? (
+          {language === "english" ? (
             <>
               <div className="ml-6 text-center">
                 <h1 className="text-white text-4xl font-bold mb-3 font-sans max-w-[40rem]">Download your shows to watch offline</h1>
@@ -136,7 +137,7 @@ function MobileLayout({ type, usersLogin }) {
       )}
       {type === "watch everywhere" && (
         <div className="flex flex-wrap justify-center items-center bg-black">
-          {lang === "english" ? (
+          {language === "english" ? (
             <>
               <div className="text-center">
                 <h1 className="text-white text-5xl font-bold mb-3 font-sans">Watch everywhere</h1>
@@ -161,7 +162,7 @@ function MobileLayout({ type, usersLogin }) {
       )}
       {type === "for kids" && (
         <div className="flex flex-wrap items-center justify-center bg-black">
-          {lang === "english" ? (
+          {language === "english" ? (
             <>
               <div className="text-center">
                 <h1 className="text-white text-4xl font-bold mb-3 font-sans max-w-[40rem]">Create profiles for kids</h1>

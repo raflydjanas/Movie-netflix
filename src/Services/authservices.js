@@ -14,7 +14,6 @@ export const getMovieDetails = async (id) => {
   try {
     const response = await axios.get(`https://api.tvmaze.com/shows/${id}`);
     const data = await response.data;
-    console.log("🚀 ~ getMovieDetails ~ data:", data);
     return data;
   } catch (error) {
     return [];

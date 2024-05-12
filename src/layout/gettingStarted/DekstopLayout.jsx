@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 function DekstopLayout({ type, usersLogin }) {
   const [inputLogin, setInputLogin] = useState();
-  const [massage, setMassage] = useState("");
-  const { lang } = useContext(LangguegeContext);
+  const [errorMassage, setErrorMassage] = useState("");
+  const { language } = useContext(LangguegeContext);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -27,7 +27,7 @@ function DekstopLayout({ type, usersLogin }) {
       navigate("/home");
     } else {
       setInputLogin("");
-      setMassage(`${lang === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
+      setErrorMassage(`${language === "english" ? "wrong username try again or sign up back" : "username salah silahkan coba lagi atau register kembali"}`);
     }
   };
   return (
@@ -36,7 +36,7 @@ function DekstopLayout({ type, usersLogin }) {
         <>
           <div className="">
             <div className="z-10 flex flex-col justify-center items-center h-full ">
-              {lang === "english" ? (
+              {language === "english" ? (
                 <>
                   <h1 className="text-white text-4xl text-center lg:text-5xl font-bold opacity-90 font-sans mb-4">Unlimiyed movie, Tv shows, and more.</h1>
                   <h2 className="text-white text-3xl text-center font-bold opacity-90 font-sans mb-5 lg:text-3xl">Watch anywhere. Cancel anytime</h2>
@@ -48,17 +48,17 @@ function DekstopLayout({ type, usersLogin }) {
                     <form action="" onSubmit={handleLogin}>
                       <input
                         type="text"
-                        placeholder="Your username"
+                        placeholder="Enter Your username"
                         value={inputLogin}
                         onChange={(e) => setInputLogin(e.target.value)}
-                        className="bg-slate-700 p-2 rounded-md mt-5 mr-2 w-[22rem] text-white opacity-80"
+                        className="bg-slate-700 py-3 px-2 rounded-md mt-5 mr-2 w-[25rem] text-white opacity-80"
                       />
                       <button type="submit" className="bg-red-600  hover:bg-red-700 px-7 py-3 rounded-md mt-5 text-white">
-                        Get Started
+                        {language === "english" ? "Get Started" : "mulai"}
                       </button>
                     </form>
                   </div>
-                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[38rem] 2xl:left-[35rem]  text-md font-bold ">{massage}</p>}
+                  {errorMassage && <p className="text-red-500 absolute bottom-[10rem] left-[38rem] 2xl:left-[45rem] xl:left-[30rem] text-md font-bold ">{errorMassage}</p>}
                 </>
               ) : (
                 <>
@@ -82,7 +82,7 @@ function DekstopLayout({ type, usersLogin }) {
                       </button>
                     </form>
                   </div>
-                  {massage && <p className="text-red-500 absolute bottom-[10rem] left-[39rem] 2xl:left-[52rem] xl:left-[10rem] text-md font-bold ">{massage}</p>}
+                  {errorMassage && <p className="text-red-500 absolute bottom-[10rem] left-[39rem] 2xl:left-[52rem] xl:left-[10rem] text-md font-bold ">{errorMassage}</p>}
                 </>
               )}
             </div>
@@ -91,7 +91,7 @@ function DekstopLayout({ type, usersLogin }) {
       )}
       {type === "enjoy your tv" && (
         <div className="flex flex-wrap justify-center items-center ">
-          {lang === "english" ? (
+          {language === "english" ? (
             <>
               <div className="">
                 <h1 className="text-white text-4xl lg:text-5xl font-bold mb-3 font-sans">Enjoy on your tv</h1>
@@ -116,7 +116,7 @@ function DekstopLayout({ type, usersLogin }) {
       )}
       {type === "download your shows" && (
         <div className="flex flex-wrap items-center justify-center">
-          {lang === "english" ? (
+          {language === "english" ? (
             <>
               <div className="mr-5">
                 <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" className="w-[30rem]" alt="" />
@@ -141,7 +141,7 @@ function DekstopLayout({ type, usersLogin }) {
       )}
       {type === "watch everywhere" && (
         <div className="flex flex-wrap justify-center items-center">
-          {lang === "english" ? (
+          {language === "english" ? (
             <>
               <div className="">
                 <h1 className="text-white text-5xl font-bold mb-3 font-sans">Watch everywhere</h1>
@@ -166,7 +166,7 @@ function DekstopLayout({ type, usersLogin }) {
       )}
       {type === "for kids" && (
         <div className="flex flex-wrap items-center justify-center">
-          {lang === "english" ? (
+          {language === "english" ? (
             <>
               <div className="mr-5">
                 <img

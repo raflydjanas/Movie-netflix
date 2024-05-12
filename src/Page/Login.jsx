@@ -7,7 +7,7 @@ import FirtsLayout from "../layout/gettingStarted/FirtsLayout";
 import SecondLayout from "../layout/gettingStarted/SecondLayout";
 
 function FormLogin() {
-  const { lang } = useContext(LangguegeContext);
+  const { language } = useContext(LangguegeContext);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function FormLogin() {
             <SecondLayout>
               <Content type="for kids" />
               <SecondLayout type="acorDiont">
-                {lang === "english" ? (
+                {language === "english" ? (
                   <h1 className="text-white text-5xl font-bold text-center">Freqeuntly asked questions</h1>
                 ) : (
                   <h1 className="text-white text-5xl font-bold text-center">Tanya Jawab Umum</h1>

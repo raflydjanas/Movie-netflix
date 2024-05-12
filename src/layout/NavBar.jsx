@@ -3,7 +3,7 @@ import { LangguegeContext } from "../Context/Langguege";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ type }) => {
-  const { lang, setLang } = useContext(LangguegeContext);
+  const { language, setLanguage } = useContext(LangguegeContext);
   const navigate = useNavigate();
 
   return (
@@ -17,12 +17,12 @@ const NavBar = ({ type }) => {
           {/* <div className=""></div> */}
 
           <div className="flex justify-center">
-            <select name="" id="" className="mr-5 bg-[#232323] w-[10rem] h-10 mt-[3rem] text-white" onChange={(e) => setLang(e.target.value)} value={lang}>
+            <select name="" id="" className="mr-5 bg-[#232323] w-[10rem] h-10 mt-[3rem] text-white" onChange={(e) => setLanguage(e.target.value)} value={language}>
               <option value="english">English</option>
               <option value="indonesia">Indonesia</option>
             </select>
             <button onClick={() => navigate("/register")} className=" block h-10 mt-[3rem] bg-red-600 hover:bg-red-700 px-10 rounded-md text-white">
-              {lang === "english" ? "Register" : "Daftar"}
+              {language === "english" ? "Register" : "Daftar"}
             </button>
           </div>
         </div>
@@ -36,12 +36,12 @@ const NavBar = ({ type }) => {
           {/* <div className=""></div> */}
 
           <div className="flex justify-center">
-            <select name="" id="" className="mr-5 bg-[#232323] w-[10rem] h-10 mt-[3rem] text-white" onChange={(e) => setLang(e.target.value)} value={lang}>
+            <select name="" id="" className="mr-5 bg-[#232323] w-[10rem] h-10 mt-[3rem] text-white" onChange={(e) => setLanguage(e.target.value)} value={language}>
               <option value="english">English</option>
               <option value="indonesia">Indonesia</option>
             </select>
             <button onClick={() => navigate("/register")} className=" block h-10 mt-[3rem] bg-red-600 hover:bg-red-700 px-10 rounded-md text-white">
-              {lang === "english" ? "Register" : "Daftar"}
+              {language === "english" ? "Register" : "Daftar"}
             </button>
           </div>
         </div>
@@ -53,8 +53,8 @@ const NavBar = ({ type }) => {
             <img src="../../public/image/logo.png" className="w-[3rem] " alt="" />
           </div>
           <div className="flex justify-center items-center gap-2">
-            <div className="text-white">{lang === "english" ? "EN" : "ID"}</div>
-            <select name="" id="" className=" w-[8rem] h-10 bg-black text-white" onChange={(e) => setLang(e.target.value)} value={lang}>
+            <div className="text-white">{language === "english" ? "EN" : "ID"}</div>
+            <select name="" id="" className=" w-[8rem] h-10 bg-black text-white" onChange={(e) => setLanguage(e.target.value)} value={language}>
               <option value="english" className="text-white">
                 English
               </option>
@@ -72,12 +72,12 @@ const NavBar = ({ type }) => {
           </div>
 
           <div className="flex justify-center items-center gap-2">
-            <select name="" id="" className=" w-[8rem] h-10 text-white" onChange={(e) => setLang(e.target.value)} value={lang}>
+            <select name="" id="" className=" w-[8rem] h-10 text-white" onChange={(e) => setLanguage(e.target.value)} value={language}>
               <option value="english">English</option>
               <option value="indonesia">Indonesia</option>
             </select>
             <button onClick={() => navigate("/register")} className=" block h-10  bg-red-600 hover:bg-red-700 px-3 rounded-md text-white">
-              {lang === "english" ? "Register" : "Daftar"}
+              {language === "english" ? "Register" : "Daftar"}
             </button>
           </div>
         </div>

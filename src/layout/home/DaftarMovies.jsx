@@ -6,14 +6,14 @@ import { useContext } from "react";
 import { LangguegeContext } from "../../Context/Langguege";
 
 function DaftarMovies() {
-  const { lang } = useContext(LangguegeContext);
+  const { language } = useContext(LangguegeContext);
   return (
     <>
       <Tabs position="relative" variant="unstyled" colorScheme="blue">
         <TabList className="gap-5 mt-6 ml-8 lg:ml-12">
-          <Tab className="text-red-600 lg:text-2xl hover:text-red-800">{lang === "english" ? "All Movie" : "semua film"}</Tab>
-          <Tab className="text-red-600 lg:text-2xl hover:text-red-800">{lang === "english" ? "Popular" : "Populer"}</Tab>
-          <Tab className="text-red-600 lg:text-2xl hover:text-red-800">{lang === "english" ? "Top pick" : "pilihan teratas"}</Tab>
+          <Tab className="text-red-600 lg:text-2xl hover:text-red-800">{language === "english" ? "All Movie" : "semua film"}</Tab>
+          <Tab className="text-red-600 lg:text-2xl hover:text-red-800">{language === "english" ? "Popular" : "Populer"}</Tab>
+          <Tab className="text-red-600 lg:text-2xl hover:text-red-800">{language === "english" ? "Top pick" : "pilihan teratas"}</Tab>
         </TabList>
         <TabIndicator mt="1.5px" height="5px" bg="blue.500" borderRadius="1px" />
         <TabPanels>
