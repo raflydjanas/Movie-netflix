@@ -37,13 +37,13 @@ function AllMovie() {
     <>
       <MovieLayout>
         {isLoading && <CartSkeleton cards={24} />}
-        {!isLoading && movies.map((movie) => <AllMovieList key={movie.id} movie={movie} id={movie.id} />)}
+        {!isLoading && movies.map((movie, index) => <AllMovieList key={movie.id} movie={movie} id={movie.id} index={index} />)}
       </MovieLayout>
       <FeatureButton />
       {movies.length > 0 && (
         <div className="flex items-center justify-center">
-          <button onClick={handleLoadMore} className="w-[10rem] lg:w-[15rem]  bg-red-700 hover:bg-red-800 mb-[6rem] mt-[2rem] py-2 px-3  rounded-md">
-            Show More v
+          <button disabled={isLoading} onClick={handleLoadMore} className="w-[10rem] lg:w-[15rem]  bg-red-700 hover:bg-red-800 mb-[6rem] mt-[2rem] py-2 px-3  rounded-md">
+            {isLoading ? "Loading..." : "Show More v"}
           </button>
         </div>
       )}
