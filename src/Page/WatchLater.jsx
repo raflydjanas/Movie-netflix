@@ -28,7 +28,7 @@ function WatchLaterPage() {
   };
 
   return (
-    <>
+    <div className="bg-slate-900 w-full h-screen">
       {moviesData.length > 0 && movieId.length > 0 ? (
         <MovieLayout>
           {movieId.map((movie) => {
@@ -60,7 +60,7 @@ function WatchLaterPage() {
       )}
 
       <FeatureButton />
-    </>
+    </div>
   );
 }
 

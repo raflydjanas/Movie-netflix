@@ -15,19 +15,19 @@ function Share() {
 
       {isOpen && (
         <div className=" absolute left-[20rem] flex flex-col lg:flex-row justify-center lg:ml-10 items-center gap-3 w-[5rem] h-[5rem]">
-          <FacebookShareButton url={`http://localhost:5173/details/${id}`}>
+          <FacebookShareButton url={`${process.env.REACT_APP_PUBLIC_URL_API}/${id}`}>
             <FacebookIcon size={35} round />
           </FacebookShareButton>
 
-          <TwitterShareButton url={`http://localhost:5173/details/${id}`}>
+          <TwitterShareButton url={`${process.env.REACT_APP_PUBLIC_URL_API}/${id}`}>
             <TwitterIcon size={35} round />
           </TwitterShareButton>
 
-          <WhatsappShareButton url={`http://localhost:5173/details/${id}`}>
+          <WhatsappShareButton url={`${process.env.REACT_APP_PUBLIC_URL_API}/${id}`}>
             <WhatsappIcon size={35} round />
           </WhatsappShareButton>
 
-          <TelegramShareButton url={`http://localhost:5173/details/${id}`}>
+          <TelegramShareButton url={`${process.env.REACT_APP_PUBLIC_URL_API}/${id}`}>
             <TelegramIcon size={35} round />
           </TelegramShareButton>
         </div>

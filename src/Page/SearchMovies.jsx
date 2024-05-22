@@ -13,8 +13,10 @@ function SearchMoviesPage() {
 
     try {
       setIsLoading(true);
+
       const res = await searchMovies(inputValue);
       setSearchResaults(res.map((result) => result.show));
+
       setInputValue("");
       setIsLoading(false);
     } catch (error) {
@@ -23,7 +25,7 @@ function SearchMoviesPage() {
   };
 
   return (
-    <div className={`flex flex-col bg-slate-900 ${searchResaults.length > 0 ? "h-auto" : "h-screen"}`}>
+    <div className={`flex flex-col bg-slate-900 ${searchResaults.length > 3 ? "h-full" : "h-screen"}`}>
       <form onSubmit={handleSubmit} className="my-10 mx-4 xl:mx-16 w-full xl:w-[70%]">
         <input
           type="text"
@@ -37,13 +39,13 @@ function SearchMoviesPage() {
         </button>
       </form>
 
+      {isLoading && <h1 className="text-white text-2xl mt-96 mx-auto">Loading...</h1>}
       <MovieLayout>
-        {isLoading && <h1 className="text-white text-xl">Loading...</h1>}
         {searchResaults.map((movie) => (
           <>
-            <div key={movie.id} className="relative hover:scale-110 hover:z-10 lg:hover:scale-150 transition duration-300 p-2 lg:p-1">
+            <div key={movie.id} className="relative hover:scale-110 hover:z-10 lg:hover:scale-120 transition duration-300 p-2 lg:p-1">
               <img src={movie?.image?.medium} alt={movie?.name} className="w-[full] rounded-md " />
-              <div className="absolute top-0 left-0 w-full h-full opacity-0 bg-black bg-opacity-50 hover:opacity-100 transition duration-300 ease-in-out text-white flex flex-col items-start justify-center p-3">
+              <div className="absolute top-0 left-0 w-full opacity-0 min-h-[19rem] bg-black bg-opacity-50 hover:opacity-100 transition duration-300 ease-in-out text-white flex flex-col items-start justify-center p-3">
                 <div className="mt-[10rem]">
                   <i className=" text-lg">{movie?.name}</i>
                   <i className="flex flex-wrap text-xs">{movie?.genres?.join(" , ")}</i>
